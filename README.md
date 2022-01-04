@@ -1,20 +1,12 @@
+### NMD Inducible Factor Finder
+
+### Install: 
+Create a conda environment with all dependencies: 
+`conda create -n nif-finder_env -c conda-forge pandas numpy biopython joblib bioservices -y`
+
+### Usage: 
 ```
-==================================================================================================
-NMD | Attribute Finder
-==================================================================================================
 
-# 1: Install Python
-	(1.0) Download an install Python 3 from https://www.continuum.io/downloads
-
-# 2: Install Dependencies [`numpy`, `pandas`, `joblib`, `bioservices`, and `biopython`]
-	(2.0) Open terminal
-	(2.1) Navigate to directory of `install_modules.sh` [e.g. `cd ~/Downloads/nmd_attribute-finder/``]
-	(2.2) Change permissions on `install_modules.sh` [e.g. `chmod 775 install_modules.sh`]
-	(2.3) Run shell script to install modules (alternatively run commands individually) [e.g. `./install_modules.sh`]
-
-# 3: Run program
-	(3.0) `python nmd_attribute-finder.py [commands]`
-	(3.1) Example command: `python nif_finder.py -p /path/to/pre-mrna.fasta -c /path/to/cds.fasta -o /path/to/output-directory`
 
 $ python nif_finder.py --help
 usage: nif_finder.py [-h] [-p PATH_PREMRNA] [-c PATH_CDS] [-o OUT_DIR]
@@ -25,9 +17,9 @@ usage: nif_finder.py [-h] [-p PATH_PREMRNA] [-c PATH_CDS] [-o OUT_DIR]
 optional arguments:
   -h, --help            show this help message and exit
   -p PATH_PREMRNA, --path_premrna PATH_PREMRNA
-                        pre-mRNA .fasta filepath
+                        pre-mRNA .fasta filepath where exons are upper case and introns are lower case
   -c PATH_CDS, --path_cds PATH_CDS
-                        CDS .fasta filepath
+                        CDS .fasta filepath of upper case CDS sequences
   -o OUT_DIR, --out_dir OUT_DIR
                         Path/to/existing-directory-for-output. Warning: Do not
                         use `~` to specify /home/[user]/. [Default: Current
@@ -49,4 +41,24 @@ optional arguments:
   --tol_long3utr TOL_LONG3UTR
                         Minimum number of nucleotides to be considered a long
                         3'utr
-                        ```
+```
+
+### License: 
+CC BY 4.0
+
+### Cite:
+* Espinoza, Josh L. (2022): NIF Finder. figshare. Software. https://doi.org/10.6084/m9.figshare.17775977.v1 
+
+* Shum EY, Espinoza JL, Ramaiah M, Wilkinson MF. Identification of novel post-transcriptional features in olfactory receptor family mRNAs. Nucleic Acids Res. 2015 Oct 30;43(19):9314-26. doi: 10.1093/nar/gkv324. PubMed PMID: 25908788; PubMed Central PMCID: PMC4627058.
+
+* Lou CH, Shao A, Shum EY, Espinoza JL, Huang L, Karam R, Wilkinson MF. Posttranscriptional control of the stem cell and neurogenic programs by the nonsense-mediated RNA decay pathway. Cell Rep. 2014 Feb 27;6(4):748-64. doi: 10.1016/j.celrep.2014.01.028. PubMed PMID: 24529710; PubMed Central PMCID: PMC3962089.
+
+* Domingo D, Nawaz U, Corbett M, Espinoza JL, Tatton-Brown K, Coman D, Wilkinson MF, Gecz J, Jolly LA. UPF3B mutations including a novel synonymous variant associated with absent speech implicate nonsense mediated mRNA decay as a regulator of neurodevelopmental disorder gene networks. Hum Mol Genet. 2020 Jul 15:ddaa151. doi: 10.1093/hmg/ddaa151. PMID: 32667670
+
+* Huang L, Shum EY, Jones SH, Lou CH, Dumdie J, Kim H, Roberts AJ, Jolly LA, Espinoza JL, Skarbrevik DM, Phan MH, Cook-Andersen H, Swerdlow NR, Gecz J, Wilkinson MF. A Upf3b-mutant mouse model with behavioral and neurogenesis defects. Mol Psychiatry. 2018 Aug;23(8):1773-1786. doi: 10.1038/mp.2017.173. PubMed PMID: 28948974; PubMed Central PMCID: PMC5869067.
+
+* Shum EY, Jones SH, Shao A, Dumdie J, Krause MD, Chan WK, Lou CH, Espinoza JL, Song HW, Phan MH, Ramaiah M, Huang L, McCarrey JR, Peterson KJ, De Rooij DG, Cook-Andersen H, Wilkinson MF. The Antagonistic Gene Paralogs Upf3a and Upf3b Govern Nonsense-Mediated RNA Decay. Cell. 2016 Apr 7;165(2):382-95. doi: 10.1016/j.cell.2016.02.046. PubMed PMID: 27040500; PubMed Central PMCID: PMC4826573.
+
+
+
+

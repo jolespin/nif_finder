@@ -72,8 +72,10 @@ def main(args=None):
                 id_gene = fields[-1].split('gene_id "')[1].split('"')[0] # Need a regex instead
                 id_transcript = fields[-1].split('transcript_id "')[1].split('"')[0] # Need a regex instead
                 exon_number = fields[-1].split('exon_number "')[1].split('"')[0] # Need a regex instead
-                transcript_version = fields[-1].split('transcript_version "')[1].split('"')[0] # Need a regex instead
-                exon_info.append([id_reference, start, end, sense, exon_number, id_gene, "{}.{}".format(id_transcript,transcript_version)])
+                if 'transcript_version "' in fields:
+                    transcript_version = fields[-1].split('transcript_version "')[1].split('"')[0] # Need a regex instead
+                    id_transcript = "{}.{}".format(id_transcript,transcript_version)
+                exon_info.append([id_reference, start, end, sense, exon_number, id_gene, id_transcript])
             
     df_exons = pd.DataFrame(exon_info, columns=["reference_id", "start", "end", "sense", "exon_number", "gene_id", "transcript_id"]).sort_values(["reference_id","start"]).reset_index(drop=True)
 

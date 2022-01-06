@@ -71,7 +71,7 @@ Writing pre-mRNA sequences: 100%|███████████████�
 * CDS sequences: Download this from Ensemble and make sure it's the same build as the GTF used for pre-mRNA sequences.
 
 ### License: 
-CC BY 4.0
+BSD-3
 
 ### Cite:
 * Espinoza, Josh L. (2022): NIF Finder. figshare. Software. https://doi.org/10.6084/m9.figshare.17775977.v1 

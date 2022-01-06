@@ -1,7 +1,7 @@
 # Python 2 & 3 Compatibility
 from __future__ import print_function, unicode_literals, absolute_import
 # Dependencies
-import sys, argparse, time, multiprocessing, os, re
+import sys, argparse, time, multiprocessing, os, re, gzip
 from collections import *
 import pandas as pd
 import numpy as np
@@ -16,7 +16,7 @@ except ModuleNotFoundError:
 
 """
 ==================================================================================================================
-NIF | Target Finder v2
+NIF Finder v2022.01.05
 ______________________
 Created by Josh L. Espinoza (08.28.2017)
 ==================================================================================================================
@@ -409,7 +409,7 @@ def main():
         os.makedirs(opts.out_dir)
 
     # NIF | Finder
-    print("================================\n NMD | Attribute Finder\n================================", file=sys.stdout)
+    print("================================\n NIF Finder\n================================", file=sys.stdout)
     print(opts.project_name)
     print("pre-mRNA:", opts.path_premrna, sep="\t", file=sys.stdout)
     print("CDS:", opts.path_cds, sep="\t", file=sys.stdout)
@@ -436,11 +436,12 @@ def main():
 
     # Load pre-mRNA Sequences
     # =======================
+    handle_premrna = {True:gzip.open(opts.path_premrna, "rt"), False:open(opts.path_premrna, "r")}[opts.path_premrna.endswith(".gz")]
     if tqdm_available:
-        iter_premrna = tqdm(SeqIO.parse(opts.path_premrna, "fasta"), desc="Reading pre-mRNA. .. ... ..... .......")
+        iter_premrna = tqdm(SeqIO.parse(handle_premrna, "fasta"), desc="Reading pre-mRNA. .. ... ..... .......")
     else:
         print("Reading pre-mRNA. .. ... ..... .......", file=sys.stderr)
-        iter_premrna = SeqIO.parse(opts.path_premrna, "fasta")
+        iter_premrna = SeqIO.parse(handle_premrna, "fasta")
     for record in iter_premrna:
         # Synthesize mRNA object
         mrna = mRNA(id=record.id)
@@ -450,11 +451,13 @@ def main():
 
     # Load CDS Sequences
     # =======================
+    handle_cds = {True:gzip.open(opts.path_cds, "rt"), False:open(opts.path_cds, "r")}[opts.path_cds.endswith(".gz")]
+
     if tqdm_available:
-        iter_cds = tqdm(SeqIO.parse(opts.path_cds, "fasta"), desc="Analyzing CDS. .. ... ..... .......")
+        iter_cds = tqdm(SeqIO.parse(handle_cds, "fasta"), desc="Analyzing CDS. .. ... ..... .......")
     else:
         print("Analyzing CDS. .. ... ..... .......", file=sys.stderr)
-        iter_cds = SeqIO.parse(opts.path_cds, "fasta")
+        iter_cds = SeqIO.parse(handle_cds, "fasta")
     for record in iter_cds:
         # Update mRNA object
         if record.id in set_premrna:

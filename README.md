@@ -43,6 +43,33 @@ optional arguments:
                         3'utr
 ```
 
+### Input: 
+* pre-mRNA sequences: Use `get_premrna_sequences_from_gtf.py` to generate a pre-mRNA fasta file with exons as upper case and introns as lower case.
+
+```
+python get_premrna_sequences_from_gtf.py -h
+usage: get_premrna_sequences_from_gtf.py -a <assembly.fa[.gz]> -g <gene_models.gtf[.gz]>  -o <output.fa>
+
+    Running: get_premrna_sequences_from_gtf.py v2022.01.05 via Python v3.8.5 
+
+optional arguments:
+  -h, --help            show this help message and exit
+  -a ASSEMBLY, --assembly ASSEMBLY
+                        path/to/assembly.fa[.gz]
+  -g GTF, --gtf GTF     path/to/gene_models.gtf[.gz]
+  -o OUTPUT, --output OUTPUT
+                        path/to/pre-mRNA.fa
+                        
+# Usage: 
+python get_premrna_sequences_from_gtf.py -a Mus_musculus.GRCm39.dna.primary_assembly.fa.gz -g Mus_musculus.GRCm39.105.gtf.gz  > Mus_musculus.GRCm39.105.gtf.premrna.fa
+  
+Reading: /Users/jespinoz/Documents/NMD/Mus_musculus.GRCm39/Mus_musculus.GRCm39.dna.primary_assembly.fa.gz: 61 sequence [00:33,  1.84 sequence/s]
+Reading: /Users/jespinoz/Documents/NMD/Mus_musculus.GRCm39/Mus_musculus.GRCm39.105.gtf.gz: 100%|███████████████████████████████████████████████████████████████████████████████████████████████████████| 1866443/1866443 [00:08<00:00, 230844.77 line/s]
+Merging exon sequences: 100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 142435/142435 [00:22<00:00, 6230.19 transcript/s]
+Writing pre-mRNA sequences: 100%|█████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 142435/142435 [00:06<00:00, 21961.93 sequence/s]                        
+```
+* CDS sequences: Download this from Ensemble and make sure it's the same build as the GTF used for pre-mRNA sequences.
+
 ### License: 
 CC BY 4.0
 

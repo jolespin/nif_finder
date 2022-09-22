@@ -2,7 +2,7 @@
 
 ### Install: 
 Create a conda environment with all dependencies: 
-`conda create -n nif-finder_env -c conda-forge pandas numpy biopython joblib bioservices -y`
+`conda create -n nif-finder_env -c conda-forge pandas numpy biopython joblib tqdm bioservices -y`
 
 ### Usage: 
 ```
